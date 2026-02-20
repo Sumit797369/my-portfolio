@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ArrowDown } from 'lucide-react';
-
+import img1 from "../assets/images/img_1.jpeg"
 const Hero: React.FC = () => {
     const heroRef = useRef<HTMLDivElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
                 <div ref={imageRef} className="hero-image-container">
                     <div className="hero-image-wrapper">
                         <img
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                            src={img1}
                             alt="Profile"
                             className="hero-image"
                         />
