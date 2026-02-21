@@ -32,10 +32,10 @@ const Hero: React.FC = () => {
             <div className="container hero-container">
                 <div className="hero-content">
                     <h1 ref={headingRef} className="hero-title">
-                        FRONTEND<br />DEVELOPER
+                        FULLSTACK<br />DEVELOPER
                     </h1>
                     <p ref={subtextRef} className="hero-subtext">
-                        Crafting modern web experiences with React & TypeScript
+                        Between logic and chaos &mdash; I choose structure.
                     </p>
                 </div>
 

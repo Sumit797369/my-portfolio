@@ -75,7 +75,7 @@ const App: React.FC = () => {
           <Contact />
 
           <footer className="footer-simple">
-            <p>&copy; {new Date().getFullYear()} Designed & Built by Portfolio</p>
+            <p>&copy; {new Date().getFullYear()} Designed & Built by Sumit</p>
           </footer>
         </>
       )}

@@ -23,15 +23,15 @@ const Contact: React.FC = () => {
                         </p>
 
                         <div className="social-links-big">
-                            <a href="#" className="social-item glass">
+                            <a href="https://www.linkedin.com/in/sumit-kumar-aab043312/" target='_blank' className="social-item glass">
                                 <Linkedin size={24} />
                                 <span>LinkedIn</span>
                             </a>
-                            <a href="#" className="social-item glass">
+                            <a href="https://github.com/Sumit797369" target='_blank'  className="social-item glass">
                                 <Github size={24} />
                                 <span>GitHub</span>
                             </a>
-                            <a href="mailto:hello@example.com" className="social-item glass">
+                            <a href="mailto:sk5040027@gmail.com" target='_blank'  className="social-item glass">
                                 <Mail size={24} />
                                 <span>Email</span>
                             </a>
