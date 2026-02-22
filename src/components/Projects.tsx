@@ -130,6 +130,7 @@ const Projects: React.FC = () => {
           align-items: center;
           opacity: 0;
           transition: opacity 0.3s ease;
+        
         }
 
         .project-card:hover .project-overlay {
