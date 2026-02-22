@@ -11,8 +11,8 @@ const projects = [
         github: "#"
     },
     {
-        title: "AI Creative Suite",
-        tech: ["Next.js", "OpenAI API", "Framer Motion"],
+        title: "Present Sirr!",
+        tech: ["Next.js", "Mongodb", "React.js"],
         image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop",
         link: "#",
         github: "#"
