@@ -18,7 +18,7 @@ const projects = [
         github: "#"
     },
     {
-        title: "Portfolio for Photographers",
+        title: "Job Portal",
         tech: ["React", "GSAP", "Tailwind CSS"],
         image: "https://images.unsplash.com/photo-1454165833267-0c7f07e5cd3f?q=80&w=2070&auto=format&fit=crop",
         link: "#",
