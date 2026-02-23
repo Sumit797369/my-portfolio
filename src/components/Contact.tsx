@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h3 className="contact-subtitle">Let's talk about my project</h3>
+                        <h3 className="contact-subtitle">Let's talk about your project</h3>
                         <p className="contact-text">
                             I'm always open to discussing new projects, creative ideas or
                             opportunities to be part of your visions.
