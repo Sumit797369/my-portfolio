@@ -18,10 +18,10 @@ const Contact: React.FC = () => {
     // Note: You will need to replace these with your actual IDs from EmailJS
     // Service ID, Template ID, and Public Key
     emailjs.sendForm(
-      'YOUR_SERVICE_ID',
-      'YOUR_TEMPLATE_ID',
+      'service_52wksy5',
+      'template_ockz5k8',
       formRef.current,
-      'YOUR_PUBLIC_KEY'
+      'SOhu1JA6uOFOskMCu'
     )
       .then(() => {
         setStatus('success');

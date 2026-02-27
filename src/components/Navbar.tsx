@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,11 +21,11 @@ const Navbar: React.FC = () => {
   }, [isDark]);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: 'home' },
+    { name: 'About', href: 'about' },
+    { name: 'Skills', href: 'skills' },
+    { name: 'Projects', href: 'projects' },
+    { name: 'Contact', href: 'contact' },
   ];
 
   return (
@@ -36,10 +37,14 @@ const Navbar: React.FC = () => {
 
         <div className="nav-links">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="nav-link">
+            <NavLink
+              key={link.name}
+              to={`/${link.href}`}
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            >
               {link.name}
               <span className="link-underline"></span>
-            </a>
+            </NavLink>
           ))}
         </div>
 
@@ -76,14 +81,14 @@ const Navbar: React.FC = () => {
             exit={{ opacity: 0, y: -20 }}
           >
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.name}
-                href={link.href}
-                className="mobile-nav-link"
+                to={`/${link.href}`}
+                className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </NavLink>
             ))}
           </motion.div>
         )}
@@ -147,8 +152,18 @@ const Navbar: React.FC = () => {
           transition: width 0.3s ease;
         }
 
-        .nav-link:hover .link-underline {
+        .nav-link:hover .link-underline,
+        .nav-link.active .link-underline {
           width: 100%;
+        }
+
+        .nav-link.active {
+          color: var(--accent-color);
+        }
+
+        .mobile-nav-link.active {
+          color: var(--accent-color);
+          font-weight: 700;
         }
 
         .nav-actions {

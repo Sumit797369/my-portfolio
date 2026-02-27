@@ -8,8 +8,16 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Reset scroll position when route changes
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (isLoading) return;
@@ -68,11 +76,15 @@ const App: React.FC = () => {
         <>
           <div className="custom-cursor"></div>
           <Navbar />
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Contact />
+
+          <Routes>
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/home" element={<Hero />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
 
           <footer className="footer-simple">
             <p>&copy; {new Date().getFullYear()} Designed & Built by Sumit</p>
