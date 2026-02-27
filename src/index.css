@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Josefin+Sans:wght@300;400;500;600;700&display=swap');
 @import "@fontsource/bitcount-grid-double/index.css";
 
 :root {
@@ -9,8 +9,8 @@
   --card-bg: rgba(255, 255, 255, 0.05);
   --nav-bg: rgba(15, 15, 15, 0.8);
   --border-color: rgba(255, 255, 255, 0.1);
-  --font-main: 'Inter', sans-serif;
-  --font-logo: 'Bitcount Grid Double', system-ui;
+  --font-main: 'Josefin Sans', sans-serif;
+  --font-logo: 'Josefin Sans', sans-serif;
   --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

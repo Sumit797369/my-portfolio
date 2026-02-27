@@ -116,10 +116,11 @@ const Navbar: React.FC = () => {
 
         .logo-text {
           font-family: var(--font-logo);
-          font-size: 1.8rem;
-          font-weight: 200;
-          letter-spacing: 0.15em;
+          font-size: 2rem;
+          font-weight: 700;
+          letter-spacing: 0.05em;
           color: var(--text-color);
+          text-transform: uppercase;
         }
 
         .nav-links {

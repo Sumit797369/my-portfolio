@@ -11,8 +11,7 @@ const projects = [
     description: "A full-stack e-commerce solution with real-time inventory management and secure payment processing.",
     tech: ["React", "Node.js","express.js", "MongoDB"],
     image: img2,
-    link: "#",
-    github: "#"
+    github: "https://github.com/Sumit797369/urbanfashin-ecommerce-"
   },
   {
     title: "HireNest – Job Portal",
@@ -55,10 +54,10 @@ const Projects: React.FC = () => {
                   <div className="project-overlay-content">
                     <p className="project-description-overlay">{project.description}</p>
                     <div className="project-links">
-                      <a href={project.link} className="project-link-btn" title="Live Demo">
+                      <a href={project.link} target='_blank' className="project-link-btn" title="Live Demo">
                         <ExternalLink size={24} />
                       </a>
-                      <a href={project.github} className="project-link-btn" title="GitHub Repo">
+                      <a href={project.github} target='_blank' className="project-link-btn" title="GitHub Repo">
                         <Github size={24} />
                       </a>
                     </div>
