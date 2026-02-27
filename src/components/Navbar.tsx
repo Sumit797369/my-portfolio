@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NavLink } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDark, setIsDark] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
@@ -28,6 +21,45 @@ const Navbar: React.FC = () => {
     { name: 'Contact', href: 'contact' },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+
+      // Simple active section detection
+      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.getElementById(href);
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled glass' : ''}`}>
       <div className="nav-container">
@@ -37,14 +69,15 @@ const Navbar: React.FC = () => {
 
         <div className="nav-links">
           {navLinks.map((link) => (
-            <NavLink
+            <a
               key={link.name}
-              to={`/${link.href}`}
-              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              href={`#${link.href}`}
+              className={`nav-link ${activeSection === link.href ? 'active' : ''}`}
+              onClick={(e) => handleScrollClick(e, link.href)}
             >
               {link.name}
               <span className="link-underline"></span>
-            </NavLink>
+            </a>
           ))}
         </div>
 
@@ -81,14 +114,14 @@ const Navbar: React.FC = () => {
             exit={{ opacity: 0, y: -20 }}
           >
             {navLinks.map((link) => (
-              <NavLink
+              <a
                 key={link.name}
-                to={`/${link.href}`}
-                className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}
-                onClick={() => setIsMenuOpen(false)}
+                href={`#${link.href}`}
+                className={`mobile-nav-link ${activeSection === link.href ? 'active' : ''}`}
+                onClick={(e) => handleScrollClick(e, link.href)}
               >
                 {link.name}
-              </NavLink>
+              </a>
             ))}
           </motion.div>
         )}

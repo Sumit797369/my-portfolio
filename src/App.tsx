@@ -78,12 +78,17 @@ const App: React.FC = () => {
           <Navbar />
 
           <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />} />
-            <Route path="/home" element={<Hero />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/" element={
+              <>
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Contact />
+              </>
+            } />
+            {/* Catch-all to redirect to home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
 
           <footer className="footer-simple">
