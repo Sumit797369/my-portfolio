@@ -189,6 +189,7 @@ const Hero: React.FC = () => {
 
           .hero-image-container {
             flex: 0 0 350px;
+            aspect-ratio:auto;
           }
         }
 
