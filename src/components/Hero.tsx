@@ -3,60 +3,60 @@ import { gsap } from 'gsap';
 import { ArrowDown } from 'lucide-react';
 import img1 from "../assets/images/img_1.jpeg"
 const Hero: React.FC = () => {
-    const heroRef = useRef<HTMLDivElement>(null);
-    const headingRef = useRef<HTMLHeadingElement>(null);
-    const subtextRef = useRef<HTMLParagraphElement>(null);
-    const imageRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const subtextRef = useRef<HTMLParagraphElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-        tl.fromTo(headingRef.current,
-            { y: 100, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1.2, delay: 0.5 }
-        )
-            .fromTo(subtextRef.current,
-                { y: 50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1 },
-                '-=0.8'
-            )
-            .fromTo(imageRef.current,
-                { scale: 0.8, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 1.5 },
-                '-=1'
-            );
-    }, []);
+    tl.fromTo(headingRef.current,
+      { y: 100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.2, delay: 0.5 }
+    )
+      .fromTo(subtextRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1 },
+        '-=0.8'
+      )
+      .fromTo(imageRef.current,
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.5 },
+        '-=1'
+      );
+  }, []);
 
-    return (
-        <section id="home" className="hero-section" ref={heroRef}>
-            <div className="container hero-container">
-                <div className="hero-content">
-                    <h1 ref={headingRef} className="hero-title">
-                        FULLSTACK<br />DEVELOPER
-                    </h1>
-                    <p ref={subtextRef} className="hero-subtext">
-                        Between logic and chaos &mdash; I choose structure.
-                    </p>
-                </div>
+  return (
+    <section id="home" className="hero-section" ref={heroRef}>
+      <div className="container hero-container">
+        <div className="hero-content">
+          <h1 ref={headingRef} className="hero-title">
+            FULLSTACK<br />DEVELOPER
+          </h1>
+          <p ref={subtextRef} className="hero-subtext">
+            Between logic and chaos &mdash; I choose structure.
+          </p>
+        </div>
 
-                <div ref={imageRef} className="hero-image-container">
-                    <div className="hero-image-wrapper">
-                        <img
-                            src={img1}
-                            alt="Profile"
-                            className="hero-image"
-                        />
-                    </div>
-                    <div className="hero-blob"></div>
-                </div>
+        <div ref={imageRef} className="hero-image-container">
+          <div className="hero-image-wrapper">
+            <img
+              src={img1}
+              alt="Profile"
+              className="hero-image"
+            />
+          </div>
+          <div className="hero-blob"></div>
+        </div>
 
-                <div className="scroll-indicator">
-                    <span>Scroll</span>
-                    <ArrowDown size={20} className="scroll-icon" />
-                </div>
-            </div>
+        <div className="scroll-indicator">
+          <span>Scroll</span>
+          <ArrowDown size={20} className="scroll-icon" />
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .hero-section {
           position: relative;
           overflow: hidden;
@@ -146,14 +146,39 @@ const Hero: React.FC = () => {
         }
 
         @media (max-width: 768px) {
+          .hero-title {
+            font-size: clamp(2.5rem, 12vw, 4.5rem);
+            margin-bottom: 1.5rem;
+          }
+          
+          .hero-subtext {
+            font-size: 1rem;
+            padding: 0 1rem;
+          }
+
           .hero-image-container {
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
+            margin-top: 1rem;
+          }
+
+          .scroll-indicator {
+            bottom: 1rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 2.8rem;
+          }
+          .hero-image-container {
+            width: 180px;
+            height: 180px;
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Hero;

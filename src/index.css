@@ -73,15 +73,24 @@ button {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 section {
-  padding: 8rem 0;
+  padding: 5rem 0; /* Reduced from 8rem for mobile */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+  section {
+    padding: 8rem 0;
+  }
 }
 
 /* Glassmorphism utility */

@@ -38,7 +38,7 @@ const About: React.FC = () => {
             <p className="about-description">
               I don’t chase trends. I try to understand foundations. Because frameworks change, libraries evolve, but the ability to think clearly — to break problems down and rebuild them better — stays.        </p>
             <p className="about-description">
-             I’m not just interested in shipping features. I’m interested in crafting experiences that feel intentional.        </p>
+              I’m not just interested in shipping features. I’m interested in crafting experiences that feel intentional.        </p>
             {/* <div className="about-stats">
                             <div className="stat">
                                 <span className="stat-number">5+</span>
@@ -119,10 +119,29 @@ const About: React.FC = () => {
         @media (max-width: 968px) {
           .about-grid {
             grid-template-columns: 1fr;
+            gap: 2.5rem;
             text-align: center;
+          }
+          .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+          }
+          .about-description {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
           }
           .about-stats {
             justify-content: center;
+            gap: 2rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .section-title {
+            font-size: 2.2rem;
+          }
+          .about-image-wrapper {
+            border-radius: 1.5rem;
           }
         }
       `}</style>

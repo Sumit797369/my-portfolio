@@ -186,13 +186,29 @@ const Skills: React.FC = () => {
         @media (max-width: 968px) {
           .categories-grid {
             grid-template-columns: 1fr;
-            gap: 4rem;
+            gap: 3rem;
+          }
+          .category-title {
+            font-size: 1.5rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .skills-list {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+          }
+          .skill-item-card {
+            padding: 1rem;
           }
         }
 
         @media (max-width: 480px) {
           .skills-list {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
+          }
+          .skill-name-text {
+            font-size: 0.9rem;
           }
         }
       `}</style>

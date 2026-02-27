@@ -9,9 +9,9 @@ const projects = [
   {
     title: "E-Commerce Reimagined",
     description: "A full-stack e-commerce solution with real-time inventory management and secure payment processing.",
-    tech: ["React", "Node.js","express.js", "MongoDB"],
+    tech: ["React", "Node.js", "express.js", "MongoDB"],
     image: img2,
-    link:"https://comingsooonnn.netlify.app/",
+    link: "https://comingsooonnn.netlify.app/",
     github: "https://github.com/Sumit797369/urbanfashin-ecommerce-"
   },
   {
@@ -209,8 +209,52 @@ const Projects: React.FC = () => {
         }
 
         @media (max-width: 768px) {
+          .projects-grid {
+            gap: 1.5rem;
+            padding: 1rem 0 2rem;
+          }
+          
           .project-card {
-            flex: 0 0 85vw;
+            flex: 0 0 calc(100vw - 3rem);
+            border-radius: 1.5rem;
+          }
+
+          .project-image-container {
+            height: 250px;
+          }
+
+          .project-overlay {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            align-items: flex-end;
+            padding-bottom: 1rem;
+          }
+
+          .project-overlay-content {
+            padding: 1rem;
+            gap: 1rem;
+          }
+
+          .project-description-overlay {
+            display: none; /* Hide long description on mobile overlay to save space */
+          }
+
+          .project-link-btn {
+            width: 50px;
+            height: 50px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .project-image-container {
+            height: 200px;
+          }
+          .project-info {
+            padding: 1.5rem;
+          }
+          .project-title {
+            font-size: 1.3rem;
           }
         }
       `}</style>

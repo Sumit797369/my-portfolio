@@ -316,9 +316,34 @@ const Contact: React.FC = () => {
         }
 
         @media (max-width: 968px) {
+          .contact-section {
+            padding-bottom: 5rem;
+          }
           .contact-container {
             grid-template-columns: 1fr;
-            gap: 4rem;
+            gap: 3rem;
+          }
+          .contact-subtitle {
+            font-size: 1.8rem;
+          }
+          .contact-text {
+            margin-bottom: 2rem;
+          }
+          .contact-form {
+            padding: 2rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .contact-form {
+            padding: 1.5rem;
+            gap: 2rem;
+          }
+          .social-item {
+            padding: 1rem 1.5rem;
+          }
+          .submit-btn {
+            width: 100%;
           }
         }
       `}</style>

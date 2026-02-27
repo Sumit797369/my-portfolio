@@ -75,6 +75,13 @@ const Intro: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
           50% { transform: scaleX(1); }
           100% { transform: scaleX(0); transform-origin: right; }
         }
+
+        @media (max-width: 480px) {
+          .intro-logo {
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+          }
+        }
       `}</style>
     </div>
   );

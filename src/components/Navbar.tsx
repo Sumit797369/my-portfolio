@@ -226,23 +226,61 @@ const Navbar: React.FC = () => {
 
         .mobile-menu {
           position: fixed;
-          top: 70px;
+          top: 80px;
           left: 1rem;
           right: 1rem;
-          padding: 2rem;
-          border-radius: 1rem;
+          padding: 2.5rem 1.5rem;
+          border-radius: 1.5rem;
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
           align-items: center;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+          z-index: 999;
+        }
+
+        .mobile-nav-link {
+          font-size: 1.2rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          width: 100%;
+          text-align: center;
+          padding: 0.5rem;
         }
 
         @media (max-width: 768px) {
+          .navbar {
+            padding: 1rem 0;
+          }
+          
+          .logo-text {
+            font-size: 1.5rem;
+          }
+
           .nav-links {
             display: none;
           }
+          
           .mobile-menu-btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .nav-actions {
+            gap: 1rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .nav-container {
+            padding: 0 1.2rem;
+          }
+          
+          .mobile-menu {
+            top: 70px;
+            padding: 2rem 1rem;
           }
         }
       `}</style>
