@@ -1,40 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
+import img2 from "../assets/images/img_2.png"
+import img3 from "../assets/images/img_3.png"
+import img4 from "../assets/images/img_4.png"
 
 const projects = [
   {
     title: "E-Commerce Reimagined",
     description: "A full-stack e-commerce solution with real-time inventory management and secure payment processing.",
-    tech: ["React", "TypeScript", "Node.js", "MongoDB"],
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2089&auto=format&fit=crop",
+    tech: ["React", "Node.js","express.js", "MongoDB"],
+    image: img2,
     link: "#",
     github: "#"
   },
   {
-    title: "Present Sirr!",
-    description: "A modern attendance tracking system designed for educational institutions with automated reporting.",
-    tech: ["Next.js", "Mongodb", "React.js"],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop",
-    link: "#",
-    github: "#"
+    title: "HireNest – Job Portal",
+    description: "Built a job portal web application that consumes REST APIs to fetch and display real-time job data.",
+    tech: ["React.js", "API", "Tailwind CSS"],
+    image: img3,
+    link: "https://hirenestt.netlify.app/",
+    github: "https://github.com/Sumit797369/HireNest"
   },
   {
-    title: "Job Portal",
-    description: "A comprehensive platform connecting employers with top talent, featuring advanced search and filtering.",
-    tech: ["React", "GSAP", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1454165833267-0c7f07e5cd3f?q=80&w=2070&auto=format&fit=crop",
-    link: "#",
-    github: "#"
+    title: " KANBAN",
+    description: "KanFlow is a simple and intuitive Kanban board application that helps users organize, track, and manage tasks efficiently through a visual workflow system.",
+    tech: ["React.js", "Tailwind CSS"],
+    image: img4,
+    link: "https://kanflow11.netlify.app/",
+    github: "https://github.com/Sumit797369/Kanban"
   },
-  {
-    title: "Crypto Dashboard",
-    description: "Real-time cryptocurrency tracking dashboard with interactive data visualizations and price alerts.",
-    tech: ["TypeScript", "D3.js", "Firebase"],
-    image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1974&auto=format&fit=crop",
-    link: "#",
-    github: "#"
-  }
+
 ];
 
 const Projects: React.FC = () => {
@@ -89,12 +85,24 @@ const Projects: React.FC = () => {
         }
 
         .projects-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-          gap: 3rem;
+          display: flex;
+          overflow-x: auto;
+          gap: 2rem;
+          padding: 1rem 0 3rem;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none;  /* IE and Edge */
+        }
+
+        .projects-grid::-webkit-scrollbar {
+          display: none; /* Chrome, Safari and Opera */
         }
 
         .project-card {
+          flex: 0 0 450px;
+          scroll-snap-align: center;
           position: relative;
           border-radius: 2rem;
           overflow: hidden;
@@ -201,8 +209,8 @@ const Projects: React.FC = () => {
         }
 
         @media (max-width: 768px) {
-          .projects-grid {
-            grid-template-columns: 1fr;
+          .project-card {
+            flex: 0 0 85vw;
           }
         }
       `}</style>
