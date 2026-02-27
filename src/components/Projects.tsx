@@ -82,37 +82,45 @@ const Projects: React.FC = () => {
       <style>{`
         .projects-section {
           background-color: var(--bg-color);
+          overflow: hidden;
         }
 
         .projects-grid {
           display: flex;
           overflow-x: auto;
-          gap: 2rem;
-          padding: 1rem 0 3rem;
+          gap: 2.5rem;
+          padding: 1rem var(--container-padding) 4rem;
           scroll-snap-type: x mandatory;
           scroll-behavior: smooth;
           -webkit-overflow-scrolling: touch;
-          scrollbar-width: none; /* Firefox */
-          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;
+          margin: 0 calc(-1 * var(--container-padding));
         }
 
         .projects-grid::-webkit-scrollbar {
-          display: none; /* Chrome, Safari and Opera */
+          display: none;
         }
 
         .project-card {
-          flex: 0 0 450px;
+          flex: 0 0 500px;
           scroll-snap-align: center;
           position: relative;
-          border-radius: 2rem;
+          border-radius: 2.5rem;
           overflow: hidden;
           background: var(--card-bg);
           border: 1px solid var(--border-color);
+          transition: var(--transition-smooth);
+        }
+
+        .project-card:hover {
+          border-color: var(--accent-color);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+          transform: translateY(-5px);
         }
 
         .project-image-container {
           position: relative;
-          height: 300px;
+          height: 320px;
           overflow: hidden;
         }
 
@@ -120,7 +128,7 @@ const Projects: React.FC = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.5s ease;
+          transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-card:hover .project-image {
@@ -129,16 +137,14 @@ const Projects: React.FC = () => {
 
         .project-overlay {
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
+          inset: 0;
           display: flex;
           justify-content: center;
           align-items: center;
           opacity: 0;
-          transition: opacity 0.3s ease;
-        
+          transition: all 0.4s ease;
+          background: rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(4px);
         }
 
         .project-card:hover .project-overlay {
@@ -147,33 +153,41 @@ const Projects: React.FC = () => {
 
         .project-links {
           display: flex;
-          gap: 2rem;
+          gap: 1.5rem;
+          transform: translateY(20px);
+          transition: all 0.4s ease;
+        }
+
+        .project-card:hover .project-links {
+          transform: translateY(0);
         }
 
         .project-link-btn {
-          width: 60px;
-          height: 60px;
+          width: 55px;
+          height: 55px;
           border-radius: 50%;
-          background: var(--accent-color);
-          color: white;
+          background: white;
+          color: black;
           display: flex;
           justify-content: center;
           align-items: center;
-          transition: transform 0.3s ease;
+          transition: all 0.3s ease;
         }
 
         .project-link-btn:hover {
           transform: scale(1.1);
-          background: var(--accent-secondary);
+          background: var(--accent-color);
+          color: white;
         }
 
         .project-info {
-          padding: 2rem;
+          padding: 2.5rem;
         }
 
         .project-title {
-          font-size: 1.5rem;
-          margin-bottom: 1rem;
+          font-size: 1.8rem;
+          margin-bottom: 1.2rem;
+          font-weight: 800;
           color: var(--text-color);
         }
 
@@ -187,74 +201,88 @@ const Projects: React.FC = () => {
         }
 
         .project-description-overlay {
-          font-size: 1rem;
+          font-size: 1.1rem;
           color: white;
           line-height: 1.6;
-          margin: 0;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+          max-width: 80%;
         }
 
         .project-tech {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.75rem;
+          gap: 0.6rem;
         }
 
         .tech-tag {
           font-size: 0.8rem;
-          padding: 0.4rem 1rem;
+          font-weight: 600;
+          padding: 0.5rem 1.2rem;
           border-radius: 2rem;
-          background: var(--border-color);
-          opacity: 0.8;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--border-color);
+          color: var(--text-color);
+          opacity: 0.7;
+        }
+
+        @media (max-width: 1024px) {
+          .project-card {
+            flex: 0 0 400px;
+          }
+          .project-image-container {
+            height: 280px;
+          }
         }
 
         @media (max-width: 768px) {
           .projects-grid {
             gap: 1.5rem;
-            padding: 1rem 0 2rem;
+            padding-bottom: 3rem;
           }
           
           .project-card {
-            flex: 0 0 calc(100vw - 3rem);
-            border-radius: 1.5rem;
+            flex: 0 0 85vw;
+            border-radius: 2rem;
           }
 
           .project-image-container {
-            height: 250px;
+            height: 240px;
           }
 
           .project-overlay {
             opacity: 1;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: none;
             align-items: flex-end;
-            padding-bottom: 1rem;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            pointer-events: none;
           }
-
-          .project-overlay-content {
-            padding: 1rem;
-            gap: 1rem;
+          
+          .project-links {
+            transform: none;
+            pointer-events: auto;
           }
 
           .project-description-overlay {
-            display: none; /* Hide long description on mobile overlay to save space */
+            display: none;
           }
 
           .project-link-btn {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
+          }
+          
+          .project-info {
+            padding: 1.5rem;
           }
         }
 
         @media (max-width: 480px) {
-          .project-image-container {
-            height: 200px;
-          }
-          .project-info {
-            padding: 1.5rem;
+          .project-card {
+            flex: 0 0 calc(100vw - 2rem);
           }
           .project-title {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
           }
         }
       `}</style>

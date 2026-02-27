@@ -60,88 +60,87 @@ const About: React.FC = () => {
       <style>{`
         .about-section {
           background-color: var(--bg-color);
+          overflow: hidden;
         }
 
         .about-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 4rem;
+          grid-template-columns: 1fr 1.2fr;
+          gap: clamp(2rem, 8vw, 6rem);
           align-items: center;
         }
 
         .about-image-wrapper {
-          border-radius: 2rem;
+          border-radius: 3rem;
           overflow: hidden;
-          box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+          box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+          border: 1px solid var(--border-color);
+          position: relative;
         }
 
         .about-image {
           width: 100%;
           display: block;
+          transition: transform 0.6s ease;
+        }
+
+        .about-image-wrapper:hover .about-image {
+          transform: scale(1.05);
+        }
+
+        .about-text {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
         }
 
         .section-title {
-          font-size: 3rem;
-          margin-bottom: 2rem;
           color: var(--accent-color);
         }
 
         .about-description {
-          font-size: 1.1rem;
-          margin-bottom: 1.5rem;
+          font-size: clamp(1rem, 1.5vw, 1.2rem);
+          line-height: 1.7;
           opacity: 0.8;
+          max-width: 600px;
         }
 
-        .about-stats {
-          display: flex;
-          gap: 3rem;
-          margin-top: 3rem;
-        }
-
-        .stat {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .stat-number {
-          font-size: 2.5rem;
-          font-weight: 800;
-          color: var(--text-color);
-        }
-
-        .stat-label {
-          font-size: 0.9rem;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          opacity: 0.6;
-        }
-
-        @media (max-width: 968px) {
+        @media (max-width: 1024px) {
           .about-grid {
             grid-template-columns: 1fr;
-            gap: 2.5rem;
-            text-align: center;
+            gap: 4rem;
+            text-align: left;
           }
-          .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+          
+          .about-image-wrapper {
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 2rem;
           }
+          
           .about-description {
-            font-size: 1rem;
-            margin-bottom: 1.2rem;
+            max-width: 100%;
           }
-          .about-stats {
-            justify-content: center;
-            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+          .about-section {
+            padding: 4rem 0;
+          }
+          .about-grid {
+            gap: 3rem;
+          }
+          .about-text {
+            gap: 1.2rem;
           }
         }
 
         @media (max-width: 480px) {
-          .section-title {
-            font-size: 2.2rem;
-          }
           .about-image-wrapper {
             border-radius: 1.5rem;
+          }
+          .about-description {
+            font-size: 1rem;
           }
         }
       `}</style>

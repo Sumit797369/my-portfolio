@@ -113,12 +113,13 @@ const Skills: React.FC = () => {
         .skills-section {
           background-color: var(--bg-color);
           position: relative;
+          overflow: hidden;
         }
 
         .categories-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 3rem;
+          grid-template-columns: repeat(2, 1fr);
+          gap: clamp(2rem, 5vw, 4rem);
           align-items: start;
         }
 
@@ -126,89 +127,102 @@ const Skills: React.FC = () => {
           display: flex;
           align-items: center;
           gap: 1rem;
-          margin-bottom: 2rem;
+          margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
           padding-left: 0.5rem;
         }
 
         .category-icon {
           color: var(--accent-color);
-          width: 28px;
-          height: 28px;
+          width: 32px;
+          height: 32px;
         }
 
         .category-title {
-          font-size: 1.8rem;
-          font-weight: 700;
+          font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+          font-weight: 800;
           letter-spacing: -0.01em;
           color: var(--text-color);
         }
 
         .skills-list {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-          gap: 1.2rem;
+          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+          gap: 1rem;
         }
 
         .skill-item-card {
           display: flex;
+          flex-direction: column;
           align-items: center;
+          justify-content: center;
           gap: 1rem;
-          padding: 1.2rem;
-          border-radius: 1.2rem;
+          padding: 1.5rem 1rem;
+          border-radius: 1.5rem;
           transition: var(--transition-smooth);
           cursor: default;
+          text-align: center;
         }
 
         .skill-icon-box {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 40px;
-          height: 40px;
-          border-radius: 0.8rem;
-          background: rgba(59, 130, 246, 0.1);
+          width: 50px;
+          height: 50px;
+          border-radius: 1rem;
+          background: rgba(59, 130, 246, 0.08);
           color: var(--accent-color);
           transition: var(--transition-smooth);
+        }
+
+        .skill-item-card:hover {
+          background: var(--card-bg);
+          border-color: var(--accent-color);
+          transform: translateY(-5px);
         }
 
         .skill-item-card:hover .skill-icon-box {
           background: var(--accent-color);
           color: white;
-          transform: rotate(10deg);
+          transform: scale(1.1) rotate(5deg);
         }
 
         .skill-name-text {
           font-weight: 600;
-          font-size: 1rem;
+          font-size: 0.95rem;
           color: var(--text-color);
+          opacity: 0.9;
         }
 
-        @media (max-width: 968px) {
+        @media (max-width: 1024px) {
           .categories-grid {
-            grid-template-columns: 1fr;
             gap: 3rem;
           }
-          .category-title {
-            font-size: 1.5rem;
+          .skills-list {
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
           }
         }
 
         @media (max-width: 768px) {
+          .categories-grid {
+            grid-template-columns: 1fr;
+            gap: 4rem;
+          }
           .skills-list {
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.8rem;
           }
           .skill-item-card {
-            padding: 1rem;
+            padding: 1.2rem 0.8rem;
           }
         }
 
         @media (max-width: 480px) {
           .skills-list {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
           }
-          .skill-name-text {
-            font-size: 0.9rem;
+          .category-title {
+            font-size: 1.5rem;
           }
         }
       `}</style>

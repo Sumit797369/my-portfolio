@@ -178,56 +178,69 @@ const Contact: React.FC = () => {
       <style>{`
         .contact-section {
           background-color: var(--bg-color);
-          padding-bottom: 10rem;
+          padding-bottom: clamp(5rem, 10vh, 10rem);
+          overflow: hidden;
         }
 
         .contact-container {
           display: grid;
           grid-template-columns: 1fr 1.2fr;
-          gap: 5rem;
+          gap: clamp(2rem, 5vw, 6rem);
           align-items: start;
         }
 
+        .contact-info {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+        }
+
         .contact-subtitle {
-          font-size: 2rem;
-          margin-bottom: 1.5rem;
+          font-size: clamp(1.8rem, 3vw, 2.5rem);
+          font-weight: 800;
+          line-height: 1.2;
         }
 
         .contact-text {
-          font-size: 1.1rem;
+          font-size: clamp(1rem, 1.5vw, 1.2rem);
           opacity: 0.7;
-          margin-bottom: 3rem;
-          max-width: 450px;
+          max-width: 500px;
+          line-height: 1.6;
         }
 
         .social-links-big {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 1.2rem;
+          margin-top: 1rem;
         }
 
         .social-item {
           display: flex;
           align-items: center;
-          gap: 1.5rem;
-          padding: 1.2rem 2rem;
-          border-radius: 1rem;
-          font-weight: 600;
+          gap: 1rem;
+          padding: 1.2rem 1.5rem;
+          border-radius: 1.2rem;
+          font-weight: 700;
           transition: var(--transition-smooth);
+          border: 1px solid var(--border-color);
         }
 
         .social-item:hover {
           background: var(--accent-color);
           color: white;
-          transform: translateX(10px);
+          transform: translateY(-5px);
+          border-color: var(--accent-color);
+          box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
         }
 
         .contact-form {
-          padding: 3rem;
-          border-radius: 2rem;
+          padding: clamp(1.5rem, 5vw, 4rem);
+          border-radius: 2.5rem;
           display: flex;
           flex-direction: column;
-          gap: 2.5rem;
+          gap: 2rem;
+          box-shadow: 0 30px 60px rgba(0,0,0,0.2);
         }
 
         .form-group {
@@ -236,28 +249,19 @@ const Contact: React.FC = () => {
 
         .form-input {
           width: 100%;
-          padding: 1rem 0;
+          padding: 1.2rem 0;
           background: transparent;
           border: none;
           color: var(--text-color);
           font-size: 1.1rem;
           font-family: inherit;
           outline: none;
-        }
-
-        .input-line {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 1px;
-          background: var(--border-color);
+          border-bottom: 1px solid var(--border-color);
           transition: var(--transition-smooth);
         }
 
-        .form-input:focus ~ .input-line {
-          background: var(--accent-color);
-          height: 2px;
+        .form-input:focus {
+          border-bottom-color: var(--accent-color);
         }
 
         .submit-btn {
@@ -265,82 +269,44 @@ const Contact: React.FC = () => {
           padding: 1.2rem 2.5rem;
           background: var(--accent-color);
           color: white;
-          border-radius: 1rem;
-          font-weight: 700;
+          border-radius: 1.2rem;
+          font-weight: 800;
           font-size: 1.1rem;
           display: flex;
           align-items: center;
           justify-content: center;
           transition: var(--transition-smooth);
-          border: none;
-          min-width: 180px;
-        }
-
-        .btn-content {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-        }
-
-        .submit-btn:disabled {
-          cursor: not-allowed;
-          opacity: 0.7;
+          box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
         }
 
         .submit-btn:hover:not(:disabled) {
           background: var(--accent-secondary);
           transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+          box-shadow: 0 15px 35px rgba(168, 85, 247, 0.4);
         }
 
-        .submit-btn.success {
-          background: #22c55e;
-        }
-
-        .error-message {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          color: #ef4444;
-          font-size: 0.9rem;
-          margin-top: -1rem;
-        }
-
-        .spin {
-          animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        @media (max-width: 968px) {
-          .contact-section {
-            padding-bottom: 5rem;
-          }
+        @media (max-width: 1024px) {
           .contact-container {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 4rem;
           }
-          .contact-subtitle {
-            font-size: 1.8rem;
+          .contact-info {
+            text-align: left;
           }
-          .contact-text {
-            margin-bottom: 2rem;
+          .social-links-big {
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
           }
+        }
+
+        @media (max-width: 768px) {
           .contact-form {
-            padding: 2rem;
+            border-radius: 2rem;
           }
         }
 
         @media (max-width: 480px) {
-          .contact-form {
-            padding: 1.5rem;
-            gap: 2rem;
-          }
-          .social-item {
-            padding: 1rem 1.5rem;
+          .social-links-big {
+            grid-template-columns: 1fr;
           }
           .submit-btn {
             width: 100%;

@@ -11,6 +11,10 @@
   --font-main: 'Josefin Sans', sans-serif;
   --font-logo: 'Josefin Sans', sans-serif;
   --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Responsive Spacing Tokens */
+  --section-padding: clamp(4rem, 8vh, 10rem);
+  --container-padding: clamp(1rem, 5vw, 2rem);
 }
 
 [data-theme='light'] {
@@ -31,6 +35,26 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+/* Responsive Font Scaling */
+@media (max-width: 1400px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 13px;
+  }
 }
 
 body {
@@ -40,6 +64,7 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
   line-height: 1.6;
+  width: 100%;
 }
 
 h1,
@@ -71,26 +96,19 @@ button {
 }
 
 .container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 var(--container-padding);
 }
 
 section {
-  padding: 5rem 0; /* Reduced from 8rem for mobile */
+  padding: var(--section-padding) 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding: 0 2rem;
-  }
-  section {
-    padding: 8rem 0;
-  }
+  position: relative;
 }
 
 /* Glassmorphism utility */
@@ -130,11 +148,12 @@ html.lenis {
 
 /* Section Title global style */
 .section-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 900;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(2rem, 5vh, 4rem);
   letter-spacing: -0.04em;
   color: var(--text-color);
+  line-height: 1;
 }
 
 .centered-title {
@@ -147,4 +166,19 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* General Responsive Utilities */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
 }

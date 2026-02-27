@@ -140,39 +140,46 @@ const Navbar: React.FC = () => {
 
         .navbar.scrolled {
           padding: 1rem 0;
+          background: var(--nav-bg);
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
-          max-width: 1200px;
+          max-width: 1400px;
           margin: 0 auto;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0 2rem;
+          padding: 0 var(--container-padding);
         }
 
         .logo-text {
           font-family: var(--font-logo);
-          font-size: 2rem;
+          font-size: clamp(1.5rem, 3vw, 2rem);
           font-weight: 700;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.1em;
           color: var(--text-color);
           text-transform: uppercase;
         }
 
         .nav-links {
           display: flex;
-          gap: 2.5rem;
+          gap: clamp(1rem, 2vw, 2.5rem);
         }
 
         .nav-link {
-          font-weight: 500;
-          font-size: 0.9rem;
+          font-weight: 600;
+          font-size: 0.85rem;
           text-transform: uppercase;
           letter-spacing: 0.05em;
           position: relative;
           padding: 0.5rem 0;
+          opacity: 0.7;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+          opacity: 1;
         }
 
         .link-underline {
@@ -194,15 +201,10 @@ const Navbar: React.FC = () => {
           color: var(--accent-color);
         }
 
-        .mobile-nav-link.active {
-          color: var(--accent-color);
-          font-weight: 700;
-        }
-
         .nav-actions {
           display: flex;
           align-items: center;
-          gap: 1.5rem;
+          gap: 1rem;
         }
 
         .theme-toggle {
@@ -213,6 +215,7 @@ const Navbar: React.FC = () => {
           padding: 0.5rem;
           border-radius: 50%;
           transition: background-color 0.3s ease;
+          border: 1px solid var(--border-color);
         }
 
         .theme-toggle:hover {
@@ -222,6 +225,9 @@ const Navbar: React.FC = () => {
         .mobile-menu-btn {
           display: none;
           color: var(--text-color);
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          border: 1px solid var(--border-color);
         }
 
         .mobile-menu {
@@ -235,52 +241,50 @@ const Navbar: React.FC = () => {
           flex-direction: column;
           gap: 1.5rem;
           align-items: center;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
           z-index: 999;
+          border: 1px solid var(--border-color);
         }
 
         .mobile-nav-link {
-          font-size: 1.2rem;
-          font-weight: 600;
+          font-size: 1.5rem;
+          font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.1em;
           width: 100%;
           text-align: center;
-          padding: 0.5rem;
+          padding: 0.8rem;
+          border-radius: 1rem;
+          transition: var(--transition-smooth);
         }
 
-        @media (max-width: 768px) {
-          .navbar {
-            padding: 1rem 0;
-          }
-          
-          .logo-text {
-            font-size: 1.5rem;
-          }
+        .mobile-nav-link.active {
+          color: var(--accent-color);
+          background: rgba(59, 130, 246, 0.1);
+        }
 
+        @media (max-width: 968px) {
           .nav-links {
             display: none;
           }
           
           .mobile-menu-btn {
             display: flex;
-            align-items: center;
-            justify-content: center;
           }
-
-          .nav-actions {
-            gap: 1rem;
+          
+          .navbar {
+            padding: 1rem 0;
           }
         }
 
         @media (max-width: 480px) {
-          .nav-container {
-            padding: 0 1.2rem;
-          }
-          
           .mobile-menu {
             top: 70px;
             padding: 2rem 1rem;
+          }
+          
+          .logo-text {
+            font-size: 1.4rem;
           }
         }
       `}</style>
