@@ -11,6 +11,7 @@ const projects = [
     description: "A full-stack e-commerce solution with real-time inventory management and secure payment processing.",
     tech: ["React", "Node.js","express.js", "MongoDB"],
     image: img2,
+    link:"https://comingsooonnn.netlify.app/",
     github: "https://github.com/Sumit797369/urbanfashin-ecommerce-"
   },
   {
