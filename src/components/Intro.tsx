@@ -55,10 +55,11 @@ const Intro: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         .intro-logo {
           font-family: var(--font-logo);
           font-size: 3.5rem;
-          font-weight: 200;
-          letter-spacing: 0.5em;
+          font-weight: 700;
+          letter-spacing: 0.2em;
           color: white;
           margin-bottom: 1rem;
+          text-transform: uppercase;
         }
 
         .intro-line {

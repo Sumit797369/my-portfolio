@@ -1,73 +1,181 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, Send } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, Github, Linkedin, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
-    return (
-        <section id="contact" className="contact-section">
-            <div className="container">
-                <h2 className="section-title centered-title">GET IN TOUCH</h2>
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-                <div className="contact-container">
-                    <motion.div
-                        className="contact-info"
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h3 className="contact-subtitle">Let's talk about your project</h3>
-                        <p className="contact-text">
-                            I'm always open to discussing new projects, creative ideas or
-                            opportunities to be part of your visions.
-                        </p>
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
 
-                        <div className="social-links-big">
-                            <a href="https://www.linkedin.com/in/sumit-kumar-aab043312/" target='_blank' className="social-item glass">
-                                <Linkedin size={24} />
-                                <span>LinkedIn</span>
-                            </a>
-                            <a href="https://github.com/Sumit797369" target='_blank'  className="social-item glass">
-                                <Github size={24} />
-                                <span>GitHub</span>
-                            </a>
-                            <a href="mailto:sk5040027@gmail.com" target='_blank'  className="social-item glass">
-                                <Mail size={24} />
-                                <span>Email</span>
-                            </a>
-                        </div>
-                    </motion.div>
+    if (!formRef.current) return;
 
-                    <motion.form
-                        className="contact-form glass"
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        onSubmit={(e) => e.preventDefault()}
-                    >
-                        <div className="form-group">
-                            <input type="text" placeholder="Name" className="form-input" required />
-                            <div className="input-line"></div>
-                        </div>
-                        <div className="form-group">
-                            <input type="email" placeholder="Email" className="form-input" required />
-                            <div className="input-line"></div>
-                        </div>
-                        <div className="form-group">
-                            <textarea placeholder="Message" className="form-input" rows={5} required></textarea>
-                            <div className="input-line"></div>
-                        </div>
+    setStatus('sending');
 
-                        <button type="submit" className="submit-btn">
-                            <span>Send Message</span>
-                            <Send size={18} />
-                        </button>
-                    </motion.form>
-                </div>
+    // Note: You will need to replace these with your actual IDs from EmailJS
+    // Service ID, Template ID, and Public Key
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID',
+      'YOUR_TEMPLATE_ID',
+      formRef.current,
+      'YOUR_PUBLIC_KEY'
+    )
+      .then(() => {
+        setStatus('success');
+        formRef.current?.reset();
+        setTimeout(() => setStatus('idle'), 5000);
+      }, (error: any) => {
+        console.log(error);
+        setStatus('error');
+        setErrorMessage('Something went wrong. Please try again or email me directly.');
+        setTimeout(() => setStatus('idle'), 5000);
+      });
+  };
+
+  return (
+    <section id="contact" className="contact-section">
+      <div className="container">
+        <h2 className="section-title centered-title">GET IN TOUCH</h2>
+
+        <div className="contact-container">
+          <motion.div
+            className="contact-info"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="contact-subtitle">Let's talk about your project</h3>
+            <p className="contact-text">
+              I'm always open to discussing new projects, creative ideas or
+              opportunities to be part of your visions.
+            </p>
+
+            <div className="social-links-big">
+              <a href="https://www.linkedin.com/in/sumit-kumar-aab043312/" target='_blank' className="social-item glass">
+                <Linkedin size={24} />
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/Sumit797369" target='_blank' className="social-item glass">
+                <Github size={24} />
+                <span>GitHub</span>
+              </a>
+              <a href="mailto:sk5040027@gmail.com" target='_blank' className="social-item glass">
+                <Mail size={24} />
+                <span>Email</span>
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.form
+            ref={formRef}
+            className="contact-form glass"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            onSubmit={sendEmail}
+          >
+            <div className="form-group">
+              <input
+                type="text"
+                name="user_name"
+                placeholder="Name"
+                className="form-input"
+                required
+                disabled={status === 'sending'}
+              />
+              <div className="input-line"></div>
+            </div>
+            <div className="form-group">
+              <input
+                type="email"
+                name="user_email"
+                placeholder="Email"
+                className="form-input"
+                required
+                disabled={status === 'sending'}
+              />
+              <div className="input-line"></div>
+            </div>
+            <div className="form-group">
+              <textarea
+                name="message"
+                placeholder="Message"
+                className="form-input"
+                rows={5}
+                required
+                disabled={status === 'sending'}
+              ></textarea>
+              <div className="input-line"></div>
             </div>
 
-            <style>{`
+            <button
+              type="submit"
+              className={`submit-btn ${status === 'sending' ? 'loading' : ''} ${status === 'success' ? 'success' : ''}`}
+              disabled={status !== 'idle'}
+            >
+              <AnimatePresence mode="wait">
+                {status === 'idle' && (
+                  <motion.div
+                    key="idle"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="btn-content"
+                  >
+                    <span>Send Message</span>
+                    <Send size={18} />
+                  </motion.div>
+                )}
+                {status === 'sending' && (
+                  <motion.div
+                    key="sending"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="btn-content"
+                  >
+                    <span>Sending...</span>
+                    <Loader2 size={18} className="spin" />
+                  </motion.div>
+                )}
+                {status === 'success' && (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="btn-content"
+                  >
+                    <span>Sent!</span>
+                    <CheckCircle size={18} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+
+            <AnimatePresence>
+              {status === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="error-message"
+                >
+                  <AlertCircle size={16} />
+                  <span>{errorMessage}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.form>
+        </div>
+      </div>
+
+      <style>{`
         .contact-section {
           background-color: var(--bg-color);
           padding-bottom: 10rem;
@@ -163,14 +271,48 @@ const Contact: React.FC = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 1rem;
           transition: var(--transition-smooth);
+          border: none;
+          min-width: 180px;
         }
 
-        .submit-btn:hover {
+        .btn-content {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .submit-btn:disabled {
+          cursor: not-allowed;
+          opacity: 0.7;
+        }
+
+        .submit-btn:hover:not(:disabled) {
           background: var(--accent-secondary);
           transform: translateY(-5px);
           box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .submit-btn.success {
+          background: #22c55e;
+        }
+
+        .error-message {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: #ef4444;
+          font-size: 0.9rem;
+          margin-top: -1rem;
+        }
+
+        .spin {
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
 
         @media (max-width: 968px) {
@@ -180,8 +322,8 @@ const Contact: React.FC = () => {
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Contact;

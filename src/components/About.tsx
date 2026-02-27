@@ -1,44 +1,45 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import img5 from "../assets/images/img_5.jpg"
 
 const About: React.FC = () => {
-    return (
-        <section id="about" className="about-section">
-            <div className="container">
-                <div className="about-grid">
-                    <motion.div
-                        className="about-image-wrapper"
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <img
-                            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop"
-                            alt="Workspace"
-                            className="about-image"
-                        />
-                    </motion.div>
+  return (
+    <section id="about" className="about-section">
+      <div className="container">
+        <div className="about-grid">
+          <motion.div
+            className="about-image-wrapper"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <img
+              src={img5}
+              alt="Workspace"
+              className="about-image"
+            />
+          </motion.div>
 
-                    <motion.div
-                        className="about-text"
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                    >
-                        <h2 className="section-title">ABOUT ME</h2>
-                        <p className="about-description">
-                            I am a passionate Frontend Developer with a keen eye for design and performance.
-                            My journey in web development started with a curiosity for how things work on the internet,
-                            and it has evolved into a career where I build beautiful, functional, and user-centric applications.
-                        </p>
-                        <p className="about-description">
-                            I specialize in React, TypeScript, and modern CSS frameworks, always striving to stay
-                            updated with the latest industry trends. I believe in writing clean, maintainable code
-                            and creating experiences that leave a lasting impression.
-                        </p>
-                        <div className="about-stats">
+          <motion.div
+            className="about-text"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h2 className="section-title">ABOUT ME</h2>
+            <p className="about-description">
+              I’m a B.Tech Computer Science student who sees code as more than syntax — for me, it’s a way of thinking.
+            </p>
+            <p className="about-description">
+              The MERN stack isn’t just a collection of technologies in my toolkit; it’s a space where logic meets experience. I enjoy building systems where the backend quietly carries complexity and the frontend translates it into something effortless for the user. I’m drawn to the invisible layers — the architecture, the flow of data, the subtle decisions that make a product feel intuitive rather than impressive.
+            </p>
+            <p className="about-description">
+              I don’t chase trends. I try to understand foundations. Because frameworks change, libraries evolve, but the ability to think clearly — to break problems down and rebuild them better — stays.        </p>
+            <p className="about-description">
+             I’m not just interested in shipping features. I’m interested in crafting experiences that feel intentional.        </p>
+            {/* <div className="about-stats">
                             <div className="stat">
                                 <span className="stat-number">5+</span>
                                 <span className="stat-label">Years Exp.</span>
@@ -51,12 +52,12 @@ const About: React.FC = () => {
                                 <span className="stat-number">100%</span>
                                 <span className="stat-label">Dedication</span>
                             </div>
-                        </div>
-                    </motion.div>
-                </div>
-            </div>
+                        </div> */}
+          </motion.div>
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .about-section {
           background-color: var(--bg-color);
         }
@@ -125,8 +126,8 @@ const About: React.FC = () => {
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default About;
