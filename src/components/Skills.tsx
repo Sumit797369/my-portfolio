@@ -6,12 +6,12 @@ import {
   Blocks,
   Atom,
   Wind,
-  Layers,
+  Layers3,
+  Layout,
+  Server,
   Cpu,
   Zap,
-  Database,
-  Terminal,
-  Layers3
+  Database
 } from 'lucide-react';
 
 const skillCategories = [
@@ -38,9 +38,6 @@ const skillCategories = [
   },
 ];
 
-// Re-using Layout and Server from lucide-react (importing them now)
-import { Layout, Server } from 'lucide-react';
-
 const Skills: React.FC = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -59,7 +56,7 @@ const Skills: React.FC = () => {
       opacity: 1,
       transition: { duration: 0.5, ease: "easeOut" }
     }
-  };
+  } as any;
 
   return (
     <section id="skills" className="skills-section">
@@ -74,7 +71,7 @@ const Skills: React.FC = () => {
         </motion.div>
 
         <div className="categories-grid">
-          {skillCategories.map((category, catIndex) => (
+          {skillCategories.map((category) => (
             <motion.div
               key={category.title}
               className="skill-category-container"
@@ -89,7 +86,7 @@ const Skills: React.FC = () => {
               </div>
 
               <div className="skills-list">
-                {category.skills.map((skill, index) => (
+                {category.skills.map((skill) => (
                   <motion.div
                     key={skill.name}
                     className="skill-item-card glass"
